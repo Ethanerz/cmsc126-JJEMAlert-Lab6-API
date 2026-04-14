@@ -7,22 +7,29 @@ async function loadCharacters() {
         }
         const data = await response.json();
 
-        container.innerHTML = '';
-        data.results.forEach(async (pokemon) => {
-            // Fetch individual pokemon data to get sprites
-            const pokeResponse = await fetch(pokemon.url);
-            const pokeData = await pokeResponse.json();
+        const pokemon_list = await Promise.all(
+            data.results.map(pokemon => fetch(pokemon.url).then(r => r.json()))
+        );
 
-            const listItem = document.createElement('li');
-            listItem.textContent = pokemon.name;
+        let row;
+        pokemon_list.forEach((pokeData, index) => {
+            if (index % 6 === 0) {
+                row = document.createElement('tr');
+                container.appendChild(row);
+            }
+
+            const td = document.createElement('td');
+
+            const name = document.createElement('p');
+            name.textContent = pokeData.name;
 
             const img = document.createElement('img');
             img.src = pokeData.sprites.front_default;
-            img.alt = pokemon.name;
-            img.style.display = 'block';
+            img.alt = pokeData.name;
 
-            listItem.appendChild(img);
-            container.appendChild(listItem );
+            td.appendChild(name);
+            td.appendChild(img);
+            row.appendChild(td);
         });
     } catch (error) {
         container.innerHTML = 'Failed to load characters.';
