@@ -1,5 +1,12 @@
 async function loadCharacters() {
     const container = document.getElementById('char-list');
+    container.innerHTML = `
+            <div class="loading-container">
+                <p class="loading-text">Loading Pokémon...</p>
+                <img src="img/loading.gif" alt="Loading..." class="loading-pokemon">
+
+            </div>
+        `;
 
     try {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
@@ -13,6 +20,7 @@ async function loadCharacters() {
             data.results.map(pokemon => fetch(pokemon.url).then(r => r.json()))
         );
 
+        container.innerHTML = '';
         let row;
         pokemon_list.forEach((pokeData, index) => {
             if (index % 6 === 0) {

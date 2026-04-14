@@ -54,9 +54,15 @@
   font-size: 12px;
 }
 
-/* Image */
+
 .poke-card img {
-  width: 120px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: rgba(93, 164, 225, 0.2);  /* Slight white tint */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
 }
 
 body {
@@ -78,3 +84,39 @@ body {
   font-size: 11px;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
+
+.loading-container {
+    text-align: center;           /* Centers horizontally */
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;          /* Centers content */
+    justify-content: center;      /* Centers vertically */
+    min-height: 400px;            /* Gives space for vertical centering */
+}
+
+.loading-pokemon {
+    width: 500px;                 /* Enlarged from 100px to 200px */
+    display: block;               /* Makes centering work properly */
+    margin: 0 auto;               /* Centers the image */
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+}
+
+.loading-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    background: #d7ac00;
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+}
+
+
