@@ -45,8 +45,13 @@ async function loadCharacters() {
             img.alt = pokeData.name;
 
             const types = document.createElement('p');
-            types.textContent = "Type: " + pokeData.types.map(t => t.type.name).join(', ');
             types.classList.add('poke-type');
+            pokeData.types.forEach(t => {
+                const badge = document.createElement('span');
+                badge.textContent = t.type.name;
+                badge.classList.add('type-badge', t.type.name);
+                types.appendChild(badge);
+            });
 
             const abilities = document.createElement('p');
             abilities.textContent = "Abilities: " + pokeData.abilities.map(a => a.ability.name).join(', ');
@@ -68,3 +73,14 @@ async function loadCharacters() {
 }
 
 loadCharacters();
+
+document.getElementById('searchBar').addEventListener('input', function () { // event listener waits for any input in the search bar
+    const query = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.poke-card'); // gets all pokemon cards
+
+    cards.forEach(card => {
+        const name = card.querySelector('.poke-name').textContent.toLowerCase(); // gets the pokemon names from cards
+        const td = card.closest('td'); // traverse the table to find td element for either showing or hiding
+        td.style.display = name.includes(query) ? '' : 'none'; // if name is included then show else hide
+    });
+});
