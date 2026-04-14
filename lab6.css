@@ -5,7 +5,7 @@
   align-items: center;
   padding: 10px 20px;
   border-bottom: 1px solid #001daf;
-  background-color: rgb(0, 191, 255);
+  background-color: #70B8F0;
 }
 
 /* Logo image */
@@ -50,7 +50,7 @@
   padding: 10px;
   border-radius: 12px;
   text-align: center;
-  color: white;
+  color: #F0F0F8;
   font-size: 12px;
 }
 
@@ -59,14 +59,22 @@
   width: 120px;
 }
 
-/* Name */
-.poke-name {
-  font-weight: bold;
-  text-transform: capitalize;
+body {
+  background-color: #F0F0F8;
 }
 
-/* Type + abilities */
+.poke-name {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+
 .poke-type,
 .poke-abilities {
-  margin: 4px 0;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
